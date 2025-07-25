@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>जय महाराष्ट्र लीग – BGMI Tournament</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
+  <!-- Particles.js -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <style>
+    @keyframes bgZoom {
+      0% { background-size: 100% auto; }
+      100% { background-size: 105% auto; }
+    }
+
+    @keyframes neonPulse {
+      0%, 100% { box-shadow: 0 0 10px #ff9800, 0 0 20px #ff9800; }
+      50% { box-shadow: 0 0 20px #ffa500, 0 0 30px #ffa500; }
+    }
+
+    @keyframes slideFade {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85)),
+                  url('https://i.ibb.co/5WxTj5QQ/bgmi-bg-jpg.jpg') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      animation: bgZoom 15s infinite alternate ease-in-out;
+      color: #fff;
+    }
+
+    #particles-js {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.85);
+      text-align: center;
+      padding: 20px;
+      animation: slideFade 1s ease-out forwards;
+      border-bottom: 2px solid #ff9800;
+    }
+
+    header img {
+      max-width: 80px;
+      margin-bottom: 10px;
+    }
+
+    header h1 {
+      color: #ff9800;
+      margin: 0;
+      font-size: 2em;
+      text-shadow: 0 0 10px #ff9800;
+    }
+
+    section {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #ffffff22;
+      border-radius: 12px;
+      padding: 25px;
+      max-width: 650px;
+      margin: 40px auto;
+      animation: slideFade 1s ease-out;
+      backdrop-filter: blur(8px);
+    }
+
+    section h2 {
+      color: #ffcc00;
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: 0 0 5px #ffcc00;
+    }
+
+    form input, form button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ffffff33;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      transition: border 0.3s ease, background 0.3s ease;
+    }
+
+    form input:focus {
+      border: 1px solid #ff9800;
+      box-shadow: 0 0 8px #ff9800;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    form button {
+      background-color: #ff9800;
+      border: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      animation: neonPulse 2s infinite;
+    }
+
+    form button:hover:enabled {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ff9800, 0 0 30px #ff9800;
+    }
+
+    form button:disabled {
+      background-color: #777;
+      animation: none;
+      cursor: not-allowed;
+    }
+
+    #successMessage {
+      display: none;
+      text-align: center;
+      background: #4caf50;
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 15px;
+      font-weight: bold;
+      animation: popIn 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <header>
+    <img src="https://i.ibb.co/r2KMB394/logo.png" alt="Tournament Logo" />
+    <h1>जय महाराष्ट्र लीग – BGMI Tournament</h1>
+    <p>Erangel | Miramar | Sanhok</p>
+  </header>
+
+  <section>
+    <h2>टीम रजिस्ट्रेशन</h2>
+    <form id="registrationForm">
+      <input type="text" id="team_name" placeholder="टीमचे नाव" required />
+      <input type="text" id="captain_name" placeholder="कॅप्टनचे नाव" required />
+      <input type="text" id="player1" placeholder="Player 1 ID" required />
+      <input type="text" id="player2" placeholder="Player 2 ID" required />
+      <input type="text" id="player3" placeholder="Player 3 ID" required />
+      <input type="text" id="player4" placeholder="Player 4 ID" required />
+      <input type="text" id="player5" placeholder="Player 5 ID (Optional)" />
+      <input type="text" id="player6" placeholder="Player 6 ID (Optional)" />
+      <input type="email" id="email" placeholder="ईमेल" required />
+      <input type="tel" id="phone" placeholder="मोबाईल नंबर" required />
+      <button type="submit" id="registerBtn" disabled>Register</button>
+    </form>
+    <div id="successMessage">धन्यवाद! तुमची टीम नोंद झाली आहे.</div>
+  </section>
+
+  <!-- Sound Effect -->
+  <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6f236f66c8.mp3?filename=click-124467.mp3" preload="auto"></audio>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const successMessage = document.getElementById('successMessage');
+    const registerBtn = document.getElementById('registerBtn');
+    const clickSound = document.getElementById('clickSound');
+
+    const requiredPlayerFields = ['player1', 'player2', 'player3', 'player4'];
+    const emailField = document.getElementById('email');
+    const phoneField = document.getElementById('phone');
+
+    function validateForm() {
+      let isValid = true;
+      requiredPlayerFields.forEach(id => {
+        const val = document.getElementById(id).value.trim();
+        if (val.length < 10) isValid = false;
+      });
+
+      const email = emailField.value.trim();
+      const phone = phoneField.value.trim();
+      if (email === "" || phone === "") isValid = false;
+
+      registerBtn.disabled = !isValid;
+    }
+
+    requiredPlayerFields.forEach(id => {
+      document.getElementById(id).addEventListener('input', validateForm);
+    });
+    emailField.addEventListener('input', validateForm);
+    phoneField.addEventListener('input', validateForm);
+
+    function isDuplicate(email, phone) {
+      let registered = JSON.parse(localStorage.getItem('registeredData') || '[]');
+      return registered.some(entry => entry.email === email || entry.phone === phone);
+    }
+
+    function saveRegistration(email, phone) {
+      let registered = JSON.parse(localStorage.getItem('registeredData') || '[]');
+      registered.push({ email, phone });
+      localStorage.setItem('registeredData', JSON.stringify(registered));
+    }
+
+    registerBtn.addEventListener('click', () => {
+      if (!registerBtn.disabled) {
+        clickSound.currentTime = 0;
+        clickSound.play();
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailField.value.trim();
+      const phone = phoneField.value.trim();
+
+      if (isDuplicate(email, phone)) {
+        alert("❌ हा ईमेल किंवा मोबाईल आधीच रजिस्टर झाला आहे!");
+        return;
+      }
+
+      const data = {
+        team_name: document.getElementById('team_name').value.trim(),
+        captain_name: document.getElementById('captain_name').value.trim(),
+        player1: document.getElementById('player1').value.trim(),
+        player2: document.getElementById('player2').value.trim(),
+        player3: document.getElementById('player3').value.trim(),
+        player4: document.getElementById('player4').value.trim(),
+        player5: document.getElementById('player5').value.trim(),
+        player6: document.getElementById('player6').value.trim(),
+        email,
+        phone
+      };
+
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbwQcrl5JhMXxxdCMBSlOLKmwe9K0BEV9BAiVUVUmDYGTA-THnO7PaHriKry7X9Bl_kgRA/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        saveRegistration(email, phone);
+        form.reset();
+        registerBtn.disabled = true;
+        successMessage.style.display = 'block';
+        setTimeout(() => successMessage.style.display = 'none', 4000);
+      } catch (error) {
+        alert("❌ नेटवर्क एरर आली आहे! कृपया पुन्हा प्रयत्न करा.");
+      }
+    });
+
+    // Load particles.js configuration
+    particlesJS.load('particles-js', 'particles.json', function () {
+      console.log('Particles.js loaded successfully');
+    });
+  </script>
+</body>
+</html>
